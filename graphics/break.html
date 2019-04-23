@@ -4,177 +4,22 @@
 	<link rel="import" href="../bower_components/sc-fitted-text/sc-fitted-text.html">
 	<script src="../bower_components/gsap/src/minified/TimelineMax.min.js"></script>
 	<script src="../bower_components/gsap/src/minified/TweenMax.min.js"></script>
-	<style>
-		#logo {
-			position: absolute;
-			left: 40px;
-			top: 50%;
-			transform: translateY(-50%);
-			display: block;
-		}
-
-		#line {
-			position: absolute;
-			width: 5px;
-			height: 750px;
-			bottom: 165px;
-			left: 830px;
-			background-color: white;
-			box-shadow: 0px 0px 50px #D00000;
-		}
-
-		#exampletext {
-			font-size: 7em;
-			left: 50px;
-			top: 300px;
-		}
-
-		#temp1 {
-			font-size: 5.5em;
-			left: 50px;
-			top: 470px;
-		}
-
-		#temp2 {
-			font-size: 5.5em;
-			left: 50px;
-			top: 570px;
-			white-space: nowrap;
-		}
-
-		#temp3 {
-			font-size: 3em;
-			left: 50px;
-			top: 653px;
-		}
-
-		#temp4 {
-			font-size: 5.5em;
-			left: 50px;
-			top: 695px;
-			white-space: nowrap;
-		}
-
-		.text {
-			position: absolute;
-			font-family: "Bahnschrift";
-			text-shadow: 0px 0px 50px #000000;
-			color: white;
-		}
-
-		#line2 {
-			background-color: white;
-			height: 5px;
-			width: 900px;
-			position: absolute;
-			left: 50px;
-			top: 440px;
-			box-shadow: 0px 0px 50px #000000;
-		}
-
-		#texts {
-			position: absolute;
-			left: 835px;
-			width: 1085px;
-			height: 1080px;
-			overflow: hidden;
-		}
-		#song {
-			bottom: 50px;
-			right: 50px;
-			width: 1820px;
-			text-align: center;
-			font-size: 3em;
-			background-color: rgba(0, 0, 0, 0.5);
-		}
-	</style>
+	<link rel="stylesheet" href="break.css">
 </head>
 <body>
-		<img src="SmashREBL_ALT-01.png" height="750" id="logo"></img>
-		<div id="line"></div>
-		<!-- these used to be temporary lol -->
-		<div id="texts">
-			<sc-fitted-text max-width="860" id="exampletext" class="text">Be right back!</sc-fitted-text>
-			<div id="line2"></div>
-			<div id="temp1" class="text">Next up:</div>
-			<sc-fitted-text max-width="860" class="text" id="temp2" align="left"></sc-fitted-text>
-			<div id="temp3" class="text">vs</div>
-			<sc-fitted-text max-width="860" class="text" id="temp4" align="left"></sc-fitted-text>
-		</div>
-		<sc-fitted-text max-width="1820" text="♫ whew lad looks like the overlay broke ♫" id="song" class="text" align="center"></sc-fitted-text>
-	<script>
-		const np1name = nodecg.Replicant('np1name');
-		const np2name = nodecg.Replicant('np2name');
-		const message = nodecg.Replicant('message');
-		const nuHidden = nodecg.Replicant('nuHidden');
-		const nowPlaying = nodecg.Replicant("nowPlaying");
-		const manualsong = nodecg.Replicant("manualSong");
-		const mSongEnabled = nodecg.Replicant("mSongEnabled");
-		const songHidden = nodecg.Replicant("songHidden");
-
-		np1name.on('change', (newValue, oldValue) => {
-			temp2.text = newValue;
-		});
-
-		np2name.on('change', (newValue, oldValue) => {
-			temp4.text = newValue;
-		});
-
-		message.on('change', (newValue, oldValue) => {
-			exampletext.text = newValue;
-		});
-
-		nuHidden.on('change', (newValue, oldValue) => {
-			var nuTl = new TimelineMax();
-			if (newValue) {
-				nuTl.to("#line2", 1, { ease: Power2.easeIn, width: 0 })
-					.to("#exampletext", 1, { ease: Power2.easeIn, left: -860 }, 0.2)
-					.to("#line2", 1, { ease: Power2.easeIn, width: 0 }, -0.1)
-					.to("#temp1", 1, { ease: Power2.easeIn, left: -860 }, 0.4)
-					.to("#temp2", 1, { ease: Power2.easeIn, left: -860 }, 0.6)
-					.to("#temp3", 1, { ease: Power2.easeIn, left: -860 }, 0.6)
-					.to("#temp4", 1, { ease: Power2.easeIn, left: -860 }, 0.7)
-					.to("#exampletext", 0, { top: "45%" })
-					.to("#exampletext", 1, { ease: Power2.easeInOut, left: 50});
-			} else {
-				nuTl.to("#exampletext", 1, { ease: Power2.easeInOut, left: -860 })
-					.to("#exampletext", 0, { top: 300 })
-					.to("#temp4", 1, { left: 50 }, 1)
-					.to("#temp3", 1, { left: 50 }, 1.1)
-					.to("#temp2", 1, { left: 50 }, 1.1)
-					.to("#temp1", 1, { left: 50 }, 1.2)
-					.to("#line2", 1, { width: 900 }, 2)
-					.to("#exampletext", 1, { left: 50 }, 1.5);
-			}
-		});
-
-		nowPlaying.on("change", (newValue, oldValue) => {
-			if (mSongEnabled.value == false || mSongEnabled.value == undefined) {
-				song.text = "♫ " + nowPlaying.value.artist + " - " + nowPlaying.value.song + " ♫";
-			}
-		});
-
-		manualsong.on("change", (newValue, oldValue) => {
-			if (mSongEnabled.value) {
-				song.text = "♫ " + manualsong.value + " ♫";
-			}
-		});
-
-		mSongEnabled.on("change", (newValue, oldValue) => {
-			if (mSongEnabled.value) {
-				song.text = "♫ " + manualsong.value + " ♫";
-			} else {
-				song.text = "♫ " + nowPlaying.value.artist + " - " + nowPlaying.value.song + " ♫";
-			}
-		});
-
-		songHidden.on("change", (newValue, oldValue) => {
-			if (newValue) {
-				TweenMax.to("#song", 0.5, { opacity: 0 });
-			} else {
-				TweenMax.to("#song", 0.5, { opacity: 1 });
-			}
-		});
-	</script>
+	<img src="SmashREBL_ALT-01.png" height="750" id="logo">
+	<div id="line"></div>
+	<!-- these used to be temporary lol -->
+	<div id="texts">
+		<sc-fitted-text max-width="860" id="exampletext" class="text">Be right back!</sc-fitted-text>
+		<div id="line2"></div>
+		<div id="temp1" class="text">Next up:</div>
+		<sc-fitted-text max-width="860" class="text" id="temp2" align="left"></sc-fitted-text>
+		<div id="temp3" class="text">vs</div>
+		<sc-fitted-text max-width="860" class="text" id="temp4" align="left"></sc-fitted-text>
+	</div>
+	<sc-fitted-text max-width="1820" text="♫ whew lad looks like the overlay broke ♫" id="song" class="text" align="center"></sc-fitted-text>
+	<img id="backgroundIMG" src="bg.svg">
+	<script type="text/javascript" src="break.js"></script>
 </body>
 </html>

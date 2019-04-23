@@ -1,0 +1,26 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000baa;
+      }
+
+      .cls-2 {
+        fill: #0029aa;
+      }
+
+      .cls-3 {
+        fill: #0047aa;
+      }
+
+      .cls-4 {
+        fill: #141414;
+      }
+    </style>
+  </defs>
+  <title>bluebois</title>
+  <rect class="cls-1" width="266" height="1080"/>
+  <rect class="cls-2" x="266" width="266" height="1080"/>
+  <rect class="cls-3" x="531" width="266" height="1080"/>
+  <rect class="cls-4" x="797" width="1123" height="1080"/>
+</svg>
