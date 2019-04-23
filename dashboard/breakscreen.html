@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="import" href="../bower_components/font-roboto/roboto.html">
+	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+	<link rel="import" href="../bower_components/paper-button/paper-button.html">
+	<link rel="import" href="../bower_components/paper-input/paper-input.html">
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment" is="custom-style">
+			paper-button {
+				margin: 2px;
+				color: #FFFFFF;
+				font-family: 'Roboto', 'Noto', sans-serif;
+				font-weight: normal;
+				font-size: 14px;
+				-webkit-font-smoothing: antialiased;
+				min-width: 116px;
+			}
+			paper-input {
+				margin-top: -10px;
+				margin-left: 5px;
+				margin-right: 5px;
+				--primary-text-color: #FFFFFF;
+				--paper-input-container-focus-color: #00BEBE;
+			}
+			.nameInput {
+				margin-top: -10px;
+				margin-left: 5px;
+				margin-right: 5px;
+				--primary-text-color: #FFFFFF;
+				--paper-input-container-focus-color: #00BEBE;
+			}
+			paper-button[disabled] {
+				color: #A9AAA9;
+				background-color: #181E29 !important;
+			}
+		</style>
+	</custom-style>
+</head>
+<body style="background-color: #2F3A4F">
+	<div class="layout horizontal">
+		<paper-button raised style="background-color: #5BA664;" id="nuShow">Show</paper-button>
+		<paper-button raised style="background-color: #C9513E;" id="nuHide">Hide</paper-button>
+	</div>
+	<paper-input label="Message" class="nameInput" id="messageInput"></paper-input>
+	<div class="layout horizontal">
+		<paper-input label="Next P1 name" class="nameInput" id="np1input"></paper-input>
+		<paper-input label="Next P2 name" class="nameInput" id="np2input"></paper-input>
+	</div>
+	<script>
+		const np1name = nodecg.Replicant('np1name');
+		const np2name = nodecg.Replicant('np2name');
+		const message = nodecg.Replicant('message');
+		const nuHidden = nodecg.Replicant('nuHidden');
+
+		np1name.on('change', (newValue, oldValue) => {
+			np1input.value = newValue;
+		});
+
+		np2name.on('change', (newValue, oldValue) => {
+			np2input.value = newValue;
+		});
+
+		np1input.addEventListener('change', (event) => {
+			np1name.value = event.target.value;
+		});
+
+		np2input.addEventListener('change', (event) => {
+			np2name.value = event.target.value;
+		});
+
+		message.on('change', (newValue, oldValue) => {
+			messageInput.value = newValue;
+		});
+
+		messageInput.addEventListener('change', (event) => {
+			message.value = event.target.value;
+		});
+
+		nuShow.onclick = () => {
+			nuHidden.value = false;
+		};
+
+		nuHide.onclick = () => {
+			nuHidden.value = true;
+		};
+		nuHidden.on('change', (newValue, OldValue) => {
+			if (newValue) {
+				nuHide.disabled = true;
+				nuShow.disabled = false;
+			} else {
+				nuShow.disabled = true;
+				nuHide.disabled = false;
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Lato:900" rel="stylesheet">
+	<link rel="import" href="../bower_components/sc-fitted-text/sc-fitted-text.html">
+	<script src="../bower_components/gsap/src/minified/TimelineMax.min.js"></script>
+	<script src="../bower_components/gsap/src/minified/TweenMax.min.js"></script>
+    <meta charset="UTF-8">
+	<style>
+		#p1scored {
+			top: 35px;
+		}
+		#p2scored {
+			top: 77px;
+		}
+		.scored {
+			color: #2D2D2D;
+			position: absolute;
+			font-size: 2.5em;
+			font-family: 'Lato', sans-serif;
+			left: 350px;
+			text-align: center;
+			width: 50px;
+		}
+		#staged {
+			color: #FFFFFF;
+			position: absolute;
+			font-size: 2em;
+			text-align: center;
+			width: 250px;
+			font-family: 'Lato', sans-serif;
+			top: 0px;
+			left: 10px;
+			height: 45px;
+		}
+		#p1graphic {
+			position: absolute;
+			background-color: #2D2D2D;
+			width: 300px;
+			height: 45px;
+			top: -1px;
+		}
+		#p2scoreg {
+			right: 0px;
+			top: -3px;
+		}
+		#logo {
+			position: absolute;
+			bottom: 25px;
+			right: 50px;
+			opacity: 0.5;
+		}
+		#scoreboard {
+			width: 1920px;
+			height: 1080px;
+			position: absolute;
+		}
+		#bg {
+			position: absolute;
+			bottom: 30px;
+			width: 250px;
+			height: 145px;
+			background-color: #000000;
+			opacity: 0.75;
+			left: 835px;
+			border-radius: 25px;
+		}
+		#score {
+			position: absolute;
+			width: 180px;
+			left: 870px;
+			bottom: 145px;
+		}
+		#c {
+			position: absolute;
+			left: 79px;
+			color: white;
+			font-family: 'Lato', sans-serif;
+			font-size: 5em;
+			top: -25px;
+		}
+		#scoreboard1 {
+			position: absolute;
+			top: 75px;
+			left: 100px;
+			width: 1000px;
+		}
+		.named {
+			color: #000000;
+			font-family: 'Lato', sans-serif;
+			font-size: 2.3em;
+			left: 10px;
+			position: absolute;
+		}
+		#p1named {
+			top: 37px;
+		}
+		#p2named {
+			top: 77px;
+		}
+	</style>
+</head>
+<body>
+	<div id="scoreboard1">
+		<canvas id="scCanvas" width="450" height="120"></canvas>
+		<sc-fitted-text text="javascript machine broke oops" max-width="385" id="staged"></sc-fitted-text>
+		<div id="p1scored" class="scored"></div>
+		<div id="p2scored" class="scored"></div>
+		<sc-fitted-text max-width="335" id="p1named" class="named" align="left"></sc-fitted-text>
+		<sc-fitted-text max-width="335" id="p2named" class="named" align="left"></sc-fitted-text>
+	</div>
+	<img src="SmashREBL-01.png" height="250" id="logo"></img>
+</body>
+<script>
+	const p1score = nodecg.Replicant('p1score');
+	const p2score = nodecg.Replicant('p2score');
+	const stage = nodecg.Replicant('stage');
+	const scHidden = nodecg.Replicant('scHidden');
+	const canvas = document.getElementById("scCanvas");
+	const ctx = scCanvas.getContext('2d');
+	const p1name = nodecg.Replicant('p1name');
+	const p2name = nodecg.Replicant('p2name');
+
+	//canvas nonsense
+	ctx.beginPath();
+	ctx.rect(0, 0, 5, 120);
+	ctx.fillStyle = "#0047aa";
+	ctx.fill();
+	ctx.beginPath();
+	ctx.rect(5, 0, 350, 120);
+	ctx.fillStyle = "#f1f1f1";
+	ctx.fill();
+	ctx.beginPath();
+	ctx.rect(350, 0, 50, 120);
+	ctx.fillStyle = "white";
+	ctx.fill();
+	ctx.beginPath();
+	ctx.rect(5, 0, 395, 40);
+	ctx.fillStyle = "#151515";
+	ctx.fill();
+	ctx.beginPath();
+	ctx.lineWidth = 3;
+	ctx.strokeStyle = "#d0d0d0";
+	ctx.moveTo(5, 80);
+	ctx.lineTo(400, 80);
+	ctx.stroke();
+	//end canvas
+	//was it worth it?
+
+	stage.on('change', (newValue, oldValue) => {
+		staged.text = newValue;
+	});
+
+	p1score.on('change', (newValue, oldValue) => {
+		p1scored.innerText = newValue;
+	});
+
+	p2score.on('change', (newValue, oldValue) => {
+		p2scored.innerText = newValue;
+	});
+	
+	scHidden.on('change', (newValue, oldValue) => {
+		if (newValue) {
+			TweenMax.to("#scoreboard1", 1, { ease: Power2.easeIn, left: -500});
+		} else {
+			TweenMax.to("#scoreboard1", 1, {left: 100});
+		}
+	});
+
+	p1name.on('change', (newValue, oldValue) => {
+		p1named.text = newValue;
+	});
+
+	p2name.on('change', (newValue, oldValue) => {
+		p2named.text = newValue;
+	});
+</script>
+</html>
