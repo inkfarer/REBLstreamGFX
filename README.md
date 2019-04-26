@@ -11,8 +11,9 @@ A [NodeCG](http://github.com/nodecg/nodecg) bundle made for REBL Smash Bros. tou
 ## Install
 
 1. Install NodeCG and (optionally) [nodecg-cli](https://github.com/nodecg/nodecg-cli).
-2. Clone REBLstreamGFX to `nodecg/bundles/REBLstreamGFX` or if you have [NodeCG-cli](https://github.com/nodecg/nodecg-cli) installed, run `nodecg install randomoink/REBLstreamGFX` in NodeCG's install directory.
-3. For last.fm integration to work, create the configuration file at `nodecg/cfg/REBLstreamGFX.json`.
+2. Clone REBLstreamGFX to `nodecg/bundles/REBLstreamGFX` or if you have nodecg-cli installed, run `nodecg install randomoink/REBLstreamGFX` in NodeCG's install directory.
+3. Install dependencies by running `npm install` and `bower install` in `nodecg/bundles/REBLstreamGFX`. If you're installing using nodecg-cli, this is done automatically.
+4. For last.fm integration to work, create the configuration file at `nodecg/cfg/REBLstreamGFX.json`.
 It should look something like this, just replace the placeholders with your own information:
 ```
 {
