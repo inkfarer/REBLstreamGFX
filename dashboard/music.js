@@ -7,7 +7,7 @@ const songHidden = nodecg.Replicant("songHidden");
 
 nowPlaying.on("change", (newValue, oldValue) => {
     if (nowPlaying.value.artist === undefined && nowPlaying.value.song === undefined) {
-        nowPlayingText.innerText = "Nothing appears to be playing at the moment.";
+        nowPlayingText.innerText = "Nothing appears to be playing at the moment.\n\nEnable manual song input, perhaps?";
     } else {
         nowPlayingText.innerText = nowPlaying.value.artist + " - " + nowPlaying.value.song;
     }
