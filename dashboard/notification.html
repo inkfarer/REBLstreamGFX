@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="import" href="../bower_components/paper-button/paper-button.html">
+	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+    <link rel="import" href="../bower_components/paper-input/paper-input.html">
+    <link rel="import" href="../bower_components/paper-input/paper-textarea.html">
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment">
+            paper-button {
+				margin: 2px;
+				color: #FFFFFF;
+				font-family: 'Roboto', 'Noto', sans-serif;
+				font-weight: normal;
+				font-size: 14px;
+                -webkit-font-smoothing: antialiased;
+                margin-left: 50px;
+            }
+            paper-button[disabled] {
+				color: #A9AAA9;
+				background-color: #181E29 !important;
+            }
+            div.label {
+                color: white;
+                text-align: center;
+                margin-left: 50px;
+                font-size: 1.2em;
+                font-weight: bold;
+            }
+            paper-input, paper-textarea {
+                --primary-text-color: #FFFFFF;
+				--paper-input-container-focus-color: #00BEBE;
+            }
+        </style>
+    </custom-style>
+</head>
+<body style="background-color: #2F3A4F">
+    <div class="layout horizontal">
+        <div class="layout vertical">
+            <div class="label">Main Scene</div>
+            <paper-button id="notifShow" raised style="background-color: #5BA664; min-width: 117px">Show</paper-button>
+            <paper-button id="notifHide" raised style="background-color: #C9513E; min-width: 117px">Hide</paper-button>
+            <paper-button id="notifShow5" raised style="background-color: #00BEBE; min-width: 117px">Show 5s</paper-button>
+        </div>
+        <div class="layout vertical">
+            <div class="label">Break Screen</div>
+            <paper-button id="notifShowBreak" raised style="background-color: #5BA664; min-width: 117px">Show</paper-button>
+            <paper-button id="notifHideBreak" raised style="background-color: #C9513E; min-width: 117px">Hide</paper-button>
+            <paper-button id="notifShowBreak5" raised style="background-color: #00BEBE; min-width: 117px">Show 5s</paper-button>
+        </div>
+    </div>
+    <div class="layout vertical">
+        <paper-input label="Notification title" id="notifTitleInput"></paper-input>
+        <paper-input always-float-label rows="3" label="Notification content (optional)" id="notifContentInput"></paper-input>
+        <!-- would have used paper-textarea for this but apparently that doesn't really like the change event for some unknown reason -->
+    </div>
+    <script type="text/javascript" src="notification.js"></script>
+</body>

@@ -42,6 +42,14 @@
         "file": "music.html",
         "headerColor": "#00BEBE",
         "workspace": "REBL Stream"
+      },
+      {
+        "name": "notifications",
+        "title": "Notifications",
+        "width": 3,
+        "file": "notification.html",
+        "headerColor": "#00BEBE",
+        "workspace": "REBL Stream"
       }
     ],
     "graphics": [

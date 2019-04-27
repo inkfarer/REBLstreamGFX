@@ -87,5 +87,91 @@
     top: 37px;
 }
 #p2named {
-    top: 77px;
+    top: 78px;
+}
+/*#notifLine {
+    height: 120px;
+    width: 5px;
+    background-color: #0047aa;
+}
+#notifTitle {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    height: 40px;
+    width: 395px;
+    background-color: #151515;
+}
+#notifBody {
+    position: absolute;
+    top: 40px;
+    left: 5px;
+    width: 395px;
+    height: 80px;
+    background-color: #f1f1f1;
+}
+#notifTitleText {
+    position: absolute;
+    left: 10px;
+    color: white;
+    top: 0px;
+    font-family: 'Lato', sans-serif;
+    font-size: 2em;
+}*/
+#notificationDiv {
+    position: absolute;
+    top: 195px;
+    left: 100px;
+    width: 400px;
+    height: 1000px;
+    overflow: hidden;
+}
+#notifLine {
+    top: 0px;
+    height: 0px;
+    width: 5px;
+    background-color: #0047aa;
+}
+#notifTitle {
+    position: absolute;
+    top: 0px;
+    left: -395px;
+    height: 40px;
+    width: 395px;
+    background-color: #151515;
+    z-index: -1;
+    opacity: 0;
+}
+#notifBody {
+    position: absolute;
+    top: 40px;
+    left: -395px;
+    width: 395px;
+    height: 80px;
+    background-color: #f1f1f1;
+    z-index: -1;
+    opacity: 0;
+}
+#notifTitleText {
+    position: absolute;
+    left: -395px;
+    color: white;
+    top: 0px;
+    font-family: 'Lato', sans-serif;
+    font-size: 2em;
+    z-index: -1;
+    opacity: 0;
+}
+#notifBodyText {
+    position: absolute;
+    left: -395px;
+    color: black;
+    top: 40px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.65em;
+    z-index: -1;
+    max-width: 385px;
+    text-overflow: ellipsis;
+    opacity: 0;
+    overflow: hidden;
 }

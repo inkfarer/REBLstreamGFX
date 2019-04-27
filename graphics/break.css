@@ -24,26 +24,26 @@
 
 #temp1 {
     font-size: 5.5em;
-    left: 50px;
+    left: -860px;
     top: 470px;
 }
 
 #temp2 {
     font-size: 5.5em;
-    left: 50px;
+    left: -860px;
     top: 570px;
     white-space: nowrap;
 }
 
 #temp3 {
     font-size: 3em;
-    left: 50px;
+    left: -860px;
     top: 653px;
 }
 
 #temp4 {
     font-size: 5.5em;
-    left: 50px;
+    left: -860px;
     top: 695px;
     white-space: nowrap;
 }
@@ -79,4 +79,61 @@
     text-align: center;
     font-size: 3em;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+#nextupTexts {
+    opacity: 1;
+}
+
+/*#notifTitle {
+    font-size: 5.5em;
+    left: 50px;
+    top: 30px;
+}
+#notifLine {
+    background-color: white;
+    height: 5px;
+    width: 900px;
+    position: absolute;
+    left: 50px;
+    top: 0px;
+    box-shadow: 0px 0px 50px #000000;
+}
+#notifContent {
+    font-size: 3.5em;
+    left: 50px;
+    top: 140px;
+    width: 860px;
+}*/
+
+#notifTitle {
+    font-size: 5.5em;
+    left: -860px;
+    top: 30px;
+}
+#notifLine {
+    background-color: white;
+    height: 5px;
+    width: 0px;
+    position: absolute;
+    left: 50px;
+    top: 0px;
+    box-shadow: 0px 0px 50px #000000;
+}
+#notifContent {
+    font-size: 3.5em;
+    left: -860px;
+    top: 140px;
+    width: 860px;
+}
+
+#notifTexts {
+    position: absolute;
+    bottom: 640px;
+    height: relative;
+    width: 900px;
+    /*margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);*/
 }
