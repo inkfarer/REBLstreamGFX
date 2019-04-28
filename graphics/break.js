@@ -6,6 +6,7 @@ const nowPlaying = nodecg.Replicant("nowPlaying");
 const manualsong = nodecg.Replicant("manualSong");
 const mSongEnabled = nodecg.Replicant("mSongEnabled");
 const songHidden = nodecg.Replicant("songHidden");
+const BGShown = nodecg.Replicant("BGShown");
 
 np1name.on('change', (newValue, oldValue) => {
     temp2.text = newValue;
@@ -43,30 +44,51 @@ nuHidden.on('change', (newValue, oldValue) => {
     }
 });
 
-nowPlaying.on("change", (newValue, oldValue) => {
-    if (mSongEnabled.value == false || mSongEnabled.value == undefined) {
-        song.text = "♫ " + nowPlaying.value.artist + " - " + nowPlaying.value.song + " ♫";
+function songTextAnim(newText) {
+    var songTimeline = new TimelineMax();
+    songTimeline.add(TweenMax.to("#song", 0.5, {top: 50, ease: Power2.easeIn, onComplete: function() {
+        song.text = newText;
+        song.style.top = "-50px";
+    }}))
+    .add(TweenMax.to("#song", 0.5, {top: 1}));
+} 
+
+function updateSongText() {
+    if (mSongEnabled.value) {
+        songTextAnim("♫ " + manualsong.value + " ♫");
+    } else {
+        if (nowPlaying.value.artist === undefined && nowPlaying.value.song === undefined) {
+            songTextAnim("♫ Nothing appears to be playing at the moment. ♫");
+        } else {
+            songTextAnim("♫ " + nowPlaying.value.artist + " - " + nowPlaying.value.song + " ♫");
+        }
     }
+}
+
+nowPlaying.on("change", (newValue, oldValue) => {
+    updateSongText();
 });
 
 manualsong.on("change", (newValue, oldValue) => {
-    if (mSongEnabled.value) {
-        song.text = "♫ " + manualsong.value + " ♫";
-    }
+    updateSongText();
 });
 
 mSongEnabled.on("change", (newValue, oldValue) => {
-    if (mSongEnabled.value) {
-        song.text = "♫ " + manualsong.value + " ♫";
-    } else {
-        song.text = "♫ " + nowPlaying.value.artist + " - " + nowPlaying.value.song + " ♫";
-    }
+    updateSongText();
 });
 
 songHidden.on("change", (newValue, oldValue) => {
     if (newValue) {
-        TweenMax.to("#song", 0.5, { opacity: 0 });
+        TweenMax.to("#musicBG", 0.5, { opacity: 0 });
     } else {
-        TweenMax.to("#song", 0.5, { opacity: 1 });
+        TweenMax.to("#musicBG", 0.5, { opacity: 1 });
     }
 });
+
+BGShown.on("change", (newValue) => {
+    if (newValue) {
+        TweenMax.to("#backgroundIMG", 1, {opacity: 1});
+    } else {
+        TweenMax.to("#backgroundIMG", 1, {opacity: 0});
+    }
+})

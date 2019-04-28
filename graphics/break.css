@@ -73,10 +73,24 @@
     overflow: hidden;
 }
 #song {
-    bottom: 50px;
-    right: 50px;
+    top: 1px;
+    right: 0px;
     width: 1820px;
     text-align: center;
     font-size: 3em;
+}
+
+#musicBG {
+    position: absolute;
+    bottom: 50px;
+    width: 1820px;
+    right: 60px;
     background-color: rgba(0, 0, 0, 0.5);
+    height: 3.7em;
+    overflow: hidden;
+}
+
+#backgroundIMG {
+    position: absolute;
+    z-index: -1;
 }
