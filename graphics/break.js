@@ -46,11 +46,11 @@ nuHidden.on('change', (newValue, oldValue) => {
 
 function songTextAnim(newText) {
     var songTimeline = new TimelineMax();
-    songTimeline.add(TweenMax.to("#song", 0.5, {top: 50, ease: Power2.easeIn, onComplete: function() {
+    songTimeline.add(TweenMax.to("#song", 0.5, {bottom: -50, ease: Power2.easeIn, onComplete: function() {
         song.text = newText;
-        song.style.top = "-50px";
+        song.style.bottom = "50px";
     }}))
-    .add(TweenMax.to("#song", 0.5, {top: 1}));
+    .add(TweenMax.to("#song", 0.5, {bottom: -2}));
 } 
 
 function updateSongText() {
@@ -67,7 +67,7 @@ function updateSongText() {
 
 nowPlaying.on("change", (newValue, oldValue) => {
     // this if condition fixes unnecessary animation triggers when the dashboard gets refreshed
-    if (newValue !== oldValue) {
+    if (newValue !== oldValue && !mSongEnabled.value) {
         updateSongText();
     }
 });
