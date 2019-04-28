@@ -66,15 +66,22 @@ function updateSongText() {
 }
 
 nowPlaying.on("change", (newValue, oldValue) => {
-    updateSongText();
+    // this if condition fixes unnecessary animation triggers when the dashboard gets refreshed
+    if (newValue !== oldValue) {
+        updateSongText();
+    }
 });
 
 manualsong.on("change", (newValue, oldValue) => {
-    updateSongText();
+    if (newValue !== oldValue) {
+        updateSongText();
+    }
 });
 
 mSongEnabled.on("change", (newValue, oldValue) => {
-    updateSongText();
+    if (newValue !== oldValue) {
+        updateSongText();
+    }
 });
 
 songHidden.on("change", (newValue, oldValue) => {
