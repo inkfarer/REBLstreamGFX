@@ -73,7 +73,7 @@ nowPlaying.on("change", (newValue, oldValue) => {
 });
 
 manualsong.on("change", (newValue, oldValue) => {
-    if (newValue !== oldValue) {
+    if (newValue !== oldValue && mSongEnabled.value) {
         updateSongText();
     }
 });
